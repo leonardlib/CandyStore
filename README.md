@@ -1,2 +1,2 @@
 # CandyStore
-An Android example app to test Firebase Realtime Database and Authentication.
+An Android example app with Firebase Realtime Database and Authentication.
