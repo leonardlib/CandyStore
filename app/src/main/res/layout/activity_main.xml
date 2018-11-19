@@ -8,18 +8,13 @@
         tools:context=".MainActivity">
 
     <Button
-            android:text="Add JSON to Firebase"
-            android:layout_width="131dp"
-            android:layout_height="50dp"
-            android:id="@+id/button"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:text="@string/login_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/loginButton"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorWhite"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 </android.support.constraint.ConstraintLayout>

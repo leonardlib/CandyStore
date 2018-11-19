@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">Candy Store</string>
 
+    <string name="login_label">Iniciar sesión</string>
+    <string name="logout_label">Cerrar sesión</string>
+    <string name="candies_label">Dulces</string>
+    <string name="name_label">Nombre</string>
+    <string name="description_label">Descripción</string>
+    <string name="price_label">Precio</string>
+    <string name="stock_label">Stock</string>
+    <string name="save_label">Guardar</string>
+
     <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
     <string name="facebook_application_id" translatable="false">759689294366130</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb759689294366130</string>

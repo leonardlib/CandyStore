@@ -1,51 +1,94 @@
 package com.leonardolirabecerra.candystore
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.leonardolirabecerra.candystore.models.Candy
-import com.leonardolirabecerra.candystore.services.CandyService
+import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.leonardolirabecerra.candystore.views.admin.AdminActivity
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-    private var usersRef: DatabaseReference? = null
+    private val providers: List<AuthUI.IdpConfig> = Arrays.asList(
+        AuthUI.IdpConfig.GoogleBuilder().build()
+    )
+    private val RC_SIGN_IN: Int = 200
+    private var user: FirebaseUser? = null
+    private var loginButton: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        title = "Todos los dulces"
 
-        usersRef = FirebaseDatabase.getInstance().getReference("users")
-        val button = findViewById<Button>(R.id.button)
+        loginButton = findViewById(R.id.loginButton)
 
-        button.setOnClickListener {
+        checkIfUserIsAdmin()
 
-            // This is hardcoding, just for testing Android with Firebase. This would be modified.
-            val candy = Candy()
-            val candyService = CandyService()
+        loginButton!!.setOnClickListener {
+            openLoginActivity()
+        }
+    }
 
-            candy.name = "Churritos"
-            candy.description = "Tiras de maíz con chile sabor mango."
-            candy.price = 15.00
-            candy.stock = 10
+    private fun checkIfUserIsAdmin(): Boolean {
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            user = FirebaseAuth.getInstance().currentUser as FirebaseUser
 
-            candyService.create(candy).addOnSuccessListener {
-                Toast.makeText(this, "Candy saved!", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
-                Toast.makeText(this, "Error while saving candy, try again.", Toast.LENGTH_LONG).show()
+            if (user!!.email == "twofacedmirror34@gmail.com") {
+                val intent = Intent(this, AdminActivity::class.java)
+                loginButton!!.visibility = View.INVISIBLE
+                startActivity(intent)
+
+                return true
+            } else {
+                AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener {
+                        loginButton!!.visibility = View.VISIBLE
+                    }
+
+                return false
             }
+        } else {
+            return false
+        }
+    }
 
-            /*
-            val intent = Intent(this, AuthenticationActivity::class.java)
+    /**
+     * Function to open login view
+     * @author Leonardo Lira Becerra
+     * @date 19/11/2018
+     */
+    private fun openLoginActivity() {
+        startActivityForResult(
+            AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build(),
+            RC_SIGN_IN
+        )
+    }
 
-            // To pass data to next activity
-            //intent.putExtra("user_id", "etc")
+    /**
+     * Function to receive the login view result
+     * @author Leonardo Lira Becerra
+     * @date 19/11/2018
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-            startActivity(intent)
-            */
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (!checkIfUserIsAdmin()) {
+                    Toast.makeText(this, "No eres administrador", Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 }

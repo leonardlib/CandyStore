@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.admin.AdminActivity">
+
+    <ImageView
+            android:layout_width="262dp"
+            android:layout_height="202dp"
+            app:srcCompat="@drawable/ic_lollipop"
+            android:background="@color/colorAccent"
+            android:padding="70dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/candiesButton"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+            android:layout_width="263dp"
+            android:layout_height="202dp"
+            app:srcCompat="@drawable/ic_schedule_black_24dp"
+            android:background="@color/colorPrimaryDark"
+            android:padding="70dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/scheduleButton"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="8dp"
+            app:layout_constraintHorizontal_bias="0.506"
+            android:layout_marginTop="12dp" app:layout_constraintTop_toBottomOf="@+id/candiesButton"/>
+
+    <Button
+            android:text="@string/logout_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/logoutButton"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
