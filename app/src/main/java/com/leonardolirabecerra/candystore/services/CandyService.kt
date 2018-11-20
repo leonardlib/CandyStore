@@ -5,7 +5,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.leonardolirabecerra.candystore.models.Candy
 
-class CandyService() {
+class CandyService {
     private var candyRef: DatabaseReference? = null
 
     init {

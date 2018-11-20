@@ -5,7 +5,6 @@ import android.app.ProgressDialog
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,7 +14,6 @@ import com.leonardolirabecerra.candystore.models.Candy
 import com.leonardolirabecerra.candystore.services.CandyService
 import android.content.Intent
 import android.provider.MediaStore
-import android.graphics.Bitmap
 import com.leonardolirabecerra.candystore.services.Utils
 import java.lang.Exception
 import java.util.*
@@ -130,6 +128,9 @@ class NewCandyActivity : AppCompatActivity() {
         candyService.create(candy).addOnSuccessListener {
             progressDialog!!.dismiss()
             Toast.makeText(this, "Se ha guardado el dulce", Toast.LENGTH_SHORT).show()
+
+            setResult(Activity.RESULT_OK)
+            finish()
         }.addOnFailureListener {
             progressDialog!!.dismiss()
             Toast.makeText(this, "Error al guardar el dulce, intenta de nuevo", Toast.LENGTH_LONG).show()
