@@ -75,7 +75,7 @@ class NewCandyActivity : AppCompatActivity() {
             val utilsService = Utils()
             val path = "images/candies/${UUID.randomUUID()}"
 
-            utilsService.uploadFile(filePath!!, path)!!.addOnSuccessListener {uri ->
+            utilsService.uploadFile(filePath!!, path).addOnSuccessListener {uri ->
                 filePath = uri
                 saveNewCandy()
             }.addOnFailureListener { e ->
