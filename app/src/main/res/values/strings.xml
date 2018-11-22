@@ -10,6 +10,7 @@
     <string name="stock_label">Stock</string>
     <string name="save_label">Guardar</string>
     <string name="select_image_label">Seleccionar imagen</string>
+    <string name="thumbnail">Thumb</string>
 
     <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
     <string name="facebook_application_id" translatable="false">759689294366130</string>

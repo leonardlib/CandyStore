@@ -3,6 +3,7 @@ package com.leonardolirabecerra.candystore.services
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.leonardolirabecerra.candystore.models.Candy
 
 class CandyService {
@@ -10,6 +11,10 @@ class CandyService {
 
     init {
         candyRef = FirebaseDatabase.getInstance().getReference("candy")
+    }
+
+    fun index(): DatabaseReference {
+        return candyRef!!
     }
 
     /**

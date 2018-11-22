@@ -1,6 +1,7 @@
 package com.leonardolirabecerra.candystore.views.candy
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -9,33 +10,29 @@ import android.view.View
 import com.leonardolirabecerra.candystore.R
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.leonardolirabecerra.candystore.adapters.CandyAdapter
+import com.leonardolirabecerra.candystore.models.Candy
+import com.leonardolirabecerra.candystore.services.CandyService
 
 
 class CandyListActivity : AppCompatActivity() {
     private val SAVED_CANDY_CODE: Int = 200
+    private val candyService: CandyService = CandyService()
+    private var candiesListView: ListView? = null
+    private var candiesList = ArrayList<Candy>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_candy_list)
         title = "Lista de dulces"
-
-        val words = ArrayList<String>()
-        words.add("one")
-        words.add("two")
-        words.add("three")
-        words.add("four")
-        words.add("five")
-        words.add("six")
-        words.add("seven")
-        words.add("eight")
-        words.add("nine")
-        words.add("ten")
-
-        val itemsAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, words)
-        val listView = findViewById<View>(R.id.candiesList) as ListView
-        listView.adapter = itemsAdapter
-
         val addCandyButton = findViewById<FloatingActionButton>(R.id.addCandyButton)
+        candiesListView = findViewById(R.id.candiesList)
+
+        // Get candies
+        getCandies()
 
         addCandyButton.setOnClickListener {
             val intent = Intent(this, NewCandyActivity::class.java)
@@ -47,7 +44,28 @@ class CandyListActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == SAVED_CANDY_CODE && resultCode == Activity.RESULT_OK) {
-            //TODO: Verificar que aparezca el dulce en la lista
+            getCandies()
         }
+    }
+
+    private fun getCandies() {
+        val context = this
+
+        val candiesListener = object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                candiesList.clear()
+                dataSnapshot.children.mapNotNullTo(candiesList) {
+                    it.getValue<Candy>(Candy::class.java)
+                }
+                val adapter = CandyAdapter(context, candiesList)
+                candiesListView!!.adapter = adapter
+            }
+
+            override fun onCancelled(dataError: DatabaseError) {
+                println("loadingCandiesError: ${dataError.toException()}")
+            }
+        }
+
+        candyService.index().addListenerForSingleValueEvent(candiesListener)
     }
 }
