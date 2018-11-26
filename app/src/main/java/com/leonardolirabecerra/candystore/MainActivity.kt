@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         if (FirebaseAuth.getInstance().currentUser != null) {
             user = FirebaseAuth.getInstance().currentUser as FirebaseUser
 
-            if (user!!.email == "twofacedmirror34@gmail.com") {
+            if (user!!.email == "candy.store.mobile@gmail.com") {
                 val intent = Intent(this, AdminActivity::class.java)
                 loginButton!!.visibility = View.INVISIBLE
                 startActivity(intent)
