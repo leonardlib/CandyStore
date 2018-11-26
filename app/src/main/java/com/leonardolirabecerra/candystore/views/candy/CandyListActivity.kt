@@ -3,8 +3,6 @@ package com.leonardolirabecerra.candystore.views.candy
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
-import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +10,6 @@ import android.support.design.widget.FloatingActionButton
 import android.view.View
 import android.widget.AdapterView
 import com.leonardolirabecerra.candystore.R
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
@@ -41,11 +38,13 @@ class CandyListActivity : AppCompatActivity() {
         // Get candies
         getCandies()
 
+        // Add new candy
         addCandyButton.setOnClickListener {
             val intent = Intent(this, NewCandyActivity::class.java)
             startActivityForResult(intent, SAVED_CANDY_CODE)
         }
 
+        // Edit candy item
         candiesListView!!.onItemClickListener = AdapterView.OnItemClickListener {
                 parent: AdapterView<*>?,
                 view: View?,
@@ -57,6 +56,7 @@ class CandyListActivity : AppCompatActivity() {
             startActivityForResult(intent, SAVED_CANDY_CODE)
         }
 
+        // Delete candy item
         candiesListView!!.onItemLongClickListener = AdapterView.OnItemLongClickListener {
                 parent,
                 view,
@@ -101,6 +101,11 @@ class CandyListActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Get a list of candies from database
+     * @author Leonardo Lira Becerra
+     * @date 26/11/2018
+     */
     private fun getCandies() {
         val context = this
 

@@ -3,6 +3,8 @@
 
     <string name="login_label">Iniciar sesión</string>
     <string name="logout_label">Cerrar sesión</string>
+    <string name="calc_label">Por precio</string>
+    <string name="admin_label">Administrador</string>
     <string name="candies_label">Dulces</string>
     <string name="name_label">Nombre</string>
     <string name="description_label">Descripción</string>

@@ -11,7 +11,6 @@ import android.widget.TextView
 import com.leonardolirabecerra.candystore.R
 import com.leonardolirabecerra.candystore.models.Candy
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.PicassoProvider
 
 class CandyAdapter(
     private val context: Context,
@@ -35,16 +34,9 @@ class CandyAdapter(
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val rowView = inflater.inflate(R.layout.candy_item, parent, false)
 
-        // Get title element
         val titleTextView = rowView.findViewById(R.id.candy_item_title) as TextView
-
-        // Get subtitle element
         val subtitleTextView = rowView.findViewById(R.id.candy_item_subtitle) as TextView
-
-        // Get detail element
         val detailTextView = rowView.findViewById(R.id.candy_item_detail) as TextView
-
-        // Get thumbnail element
         val thumbnailImageView = rowView.findViewById(R.id.candy_item_thumbnail) as ImageView
 
         val candy = getItem(position) as Candy
@@ -57,7 +49,6 @@ class CandyAdapter(
 
         Picasso.get().load(candy.image).placeholder(R.mipmap.ic_launcher).into(thumbnailImageView)
 
-        // Get view for row item
         return rowView
     }
 }

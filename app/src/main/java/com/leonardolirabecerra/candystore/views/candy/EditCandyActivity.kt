@@ -7,8 +7,6 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -54,6 +52,7 @@ class EditCandyActivity : AppCompatActivity() {
         uuid = intent.getStringExtra("candy_uuid")
         getCandy()
 
+        // Save new candy data
         saveButton.setOnClickListener {
             progressDialog!!.setTitle("Guardando...")
             progressDialog!!.show()
@@ -70,6 +69,11 @@ class EditCandyActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Function to select an image from device
+     * @author Leonardo Lira Becerra
+     * @date 26/11/2018
+     */
     private fun chooseImage() {
         val intent = Intent()
         intent.type = "image/*"
@@ -81,6 +85,11 @@ class EditCandyActivity : AppCompatActivity() {
         )
     }
 
+    /**
+     * Function to upload image to cloud storage
+     * @author Leonardo Lira Becerra
+     * @date 26/11/2018
+     */
     private fun uploadImage() {
         if (filePath != null) {
             val utilsService = Utils()
@@ -97,6 +106,11 @@ class EditCandyActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Check if data is completed
+     * @author Leonardo Lira Becerra
+     * @date 26/11/2018
+     */
     private fun checkFillData(): Boolean {
         return (
             nameInput!!.text.toString().trim().isNotEmpty()
@@ -127,6 +141,11 @@ class EditCandyActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Fill view with current candy data
+     * @author Leonardo Lira Becerra
+     * @date 26/11/2018
+     */
     private fun fillCandyData() {
         nameInput!!.setText(candy!!.name)
         descriptionInput!!.setText(candy!!.description)
@@ -135,6 +154,11 @@ class EditCandyActivity : AppCompatActivity() {
         Picasso.get().load(candy!!.image).placeholder(R.mipmap.ic_launcher).into(imageView)
     }
 
+    /**
+     * Get candy properties from database
+     * @author Leonardo Lira Becerra
+     * @date 26/11/2018
+     */
     private fun getCandy() {
         val candyListener = object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -150,6 +174,11 @@ class EditCandyActivity : AppCompatActivity() {
         candyService.show(uuid!!).addListenerForSingleValueEvent(candyListener)
     }
 
+    /**
+     * Save new candy properties to database
+     * @author Leonardo Lira Becerra
+     * @date 26/11/2018
+     */
     private fun saveEditedCandy() {
         val candyService = CandyService()
 
