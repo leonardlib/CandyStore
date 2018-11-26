@@ -1,7 +1,10 @@
 package com.leonardolirabecerra.candystore.views.candy
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -25,6 +28,7 @@ class CandyListActivity : AppCompatActivity() {
     private val candyService: CandyService = CandyService()
     private var candiesListView: ListView? = null
     private var candiesList = ArrayList<Candy>()
+    private var progressDialog: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,7 @@ class CandyListActivity : AppCompatActivity() {
         title = "Lista de dulces"
         val addCandyButton = findViewById<FloatingActionButton>(R.id.addCandyButton)
         candiesListView = findViewById(R.id.candiesList)
+        progressDialog = ProgressDialog(this)
 
         // Get candies
         getCandies()
@@ -50,6 +55,41 @@ class CandyListActivity : AppCompatActivity() {
             val intent = Intent(this, EditCandyActivity::class.java)
             intent.putExtra("candy_uuid", candiesList[position].uuid)
             startActivityForResult(intent, SAVED_CANDY_CODE)
+        }
+
+        candiesListView!!.onItemLongClickListener = AdapterView.OnItemLongClickListener {
+                parent,
+                view,
+                position,
+                id ->
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("¿Estás seguro de eliminar el dulce?")
+            builder.setMessage("Una vez eliminado no se podrá recuperar.")
+
+            builder.setPositiveButton("Sí, estoy seguro") { dialog, which ->
+                dialog.dismiss()
+                progressDialog!!.setTitle("Eliminando...")
+                progressDialog!!.show()
+
+                candyService.delete(candiesList[position].uuid).addOnSuccessListener {
+                    progressDialog!!.dismiss()
+                    Toast.makeText(this, "Se ha eliminado el dulce", Toast.LENGTH_LONG).show()
+                    getCandies()
+                }.addOnFailureListener {
+                    progressDialog!!.dismiss()
+                    Toast.makeText(this, "No se ha podido eliminar el dulce", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            builder.setNegativeButton("Cancelar") { dialog, which ->
+                dialog.dismiss()
+            }
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+
+            return@OnItemLongClickListener true
         }
     }
 

@@ -31,4 +31,12 @@ class CandyService {
     fun show(candyUuid: String): DatabaseReference {
         return candyRef!!.child(candyUuid)
     }
+
+    fun update(candy: Candy): Task<Void> {
+        return candyRef!!.child(candy.uuid).setValue(candy)
+    }
+
+    fun delete(candyUuid: String): Task<Void> {
+        return candyRef!!.child(candyUuid).removeValue()
+    }
 }
