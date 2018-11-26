@@ -21,7 +21,7 @@ class EditCandyActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_candy)
 
         uuid = intent.getStringExtra("candy_uuid")
-        getCandy()
+        getCandy();
     }
 
     private fun getCandy() {
