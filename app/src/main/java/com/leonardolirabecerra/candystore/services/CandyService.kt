@@ -23,6 +23,12 @@ class CandyService {
      * @date 13/11/2018
      */
     fun create(candy: Candy): Task<Void> {
-        return candyRef!!.push().setValue(candy)
+        val key = candyRef!!.push().key
+        candy.uuid = key!!
+        return candyRef!!.child(candy.uuid).setValue(candy)
+    }
+
+    fun show(candyUuid: String): DatabaseReference {
+        return candyRef!!.child(candyUuid)
     }
 }

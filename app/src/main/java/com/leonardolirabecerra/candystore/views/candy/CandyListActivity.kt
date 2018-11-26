@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.view.View
+import android.widget.AdapterView
 import com.leonardolirabecerra.candystore.R
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -36,6 +38,17 @@ class CandyListActivity : AppCompatActivity() {
 
         addCandyButton.setOnClickListener {
             val intent = Intent(this, NewCandyActivity::class.java)
+            startActivityForResult(intent, SAVED_CANDY_CODE)
+        }
+
+        candiesListView!!.onItemClickListener = AdapterView.OnItemClickListener {
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long ->
+
+            val intent = Intent(this, EditCandyActivity::class.java)
+            intent.putExtra("candy_uuid", candiesList[position].uuid)
             startActivityForResult(intent, SAVED_CANDY_CODE)
         }
     }

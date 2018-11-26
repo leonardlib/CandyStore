@@ -6,4 +6,5 @@ class Candy {
     var image: String = ""
     var price: Double = 0.0
     var stock: Int = 0
+    var uuid: String = ""
 }
