@@ -20,15 +20,10 @@ class AdminActivity : AppCompatActivity() {
         title = "Panel de administrador"
 
         val candiesButton = findViewById<ImageView>(R.id.candiesButton)
-        val scheduleButton = findViewById<ImageView>(R.id.scheduleButton)
 
         candiesButton.setOnClickListener {
             val intent = Intent(this, CandyListActivity::class.java)
             startActivity(intent)
-        }
-
-        scheduleButton.setOnClickListener {
-            Toast.makeText(this, "Aún no funciona este módulo", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -53,6 +53,7 @@ class PriceRangeActivity : AppCompatActivity() {
     /**
      * Get filter candies by price
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun getCandies(price: String) {

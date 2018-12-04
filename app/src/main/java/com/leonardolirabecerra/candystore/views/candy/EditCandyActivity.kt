@@ -72,6 +72,7 @@ class EditCandyActivity : AppCompatActivity() {
     /**
      * Function to select an image from device
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun chooseImage() {
@@ -88,6 +89,7 @@ class EditCandyActivity : AppCompatActivity() {
     /**
      * Function to upload image to cloud storage
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun uploadImage() {
@@ -109,6 +111,7 @@ class EditCandyActivity : AppCompatActivity() {
     /**
      * Check if data is completed
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun checkFillData(): Boolean {
@@ -144,6 +147,7 @@ class EditCandyActivity : AppCompatActivity() {
     /**
      * Fill view with current candy data
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun fillCandyData() {
@@ -157,6 +161,7 @@ class EditCandyActivity : AppCompatActivity() {
     /**
      * Get candy properties from database
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun getCandy() {
@@ -177,6 +182,7 @@ class EditCandyActivity : AppCompatActivity() {
     /**
      * Save new candy properties to database
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun saveEditedCandy() {

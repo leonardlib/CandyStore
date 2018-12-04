@@ -18,6 +18,7 @@ class Utils {
     /**
      * Upload a candy image to cloud storage
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     fun uploadFile(filePath: Uri, firebasePath: String): Task<Uri> {

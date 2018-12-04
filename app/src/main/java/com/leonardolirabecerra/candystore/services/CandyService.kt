@@ -16,6 +16,7 @@ class CandyService {
     /**
      * Get all candies in database
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     fun index(): DatabaseReference {
@@ -25,6 +26,7 @@ class CandyService {
     /**
      * Function to save new candy
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 13/11/2018
      */
     fun create(candy: Candy): Task<Void> {
@@ -36,6 +38,7 @@ class CandyService {
     /**
      * Get a specific candy
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     fun show(candyUuid: String): DatabaseReference {
@@ -45,6 +48,7 @@ class CandyService {
     /**
      * Update candy properties
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     fun update(candy: Candy): Task<Void> {
@@ -54,6 +58,7 @@ class CandyService {
     /**
      * Delete a candy
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     fun delete(candyUuid: String): Task<Void> {
@@ -63,6 +68,7 @@ class CandyService {
     /**
      * Get candies less or equal that given price
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     fun filterByPrice(price: Double): Query {

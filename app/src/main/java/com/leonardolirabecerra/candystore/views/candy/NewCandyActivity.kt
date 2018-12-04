@@ -62,6 +62,7 @@ class NewCandyActivity : AppCompatActivity() {
     /**
      * Select an image from device
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun chooseImage() {
@@ -78,6 +79,7 @@ class NewCandyActivity : AppCompatActivity() {
     /**
      * Upload image to cloud storage
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun uploadImage() {
@@ -97,6 +99,7 @@ class NewCandyActivity : AppCompatActivity() {
     /**
      * Check if data is completed
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun checkFillData(): Boolean {
@@ -132,6 +135,7 @@ class NewCandyActivity : AppCompatActivity() {
     /**
      * Save new candy to database
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun saveNewCandy() {

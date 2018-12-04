@@ -104,6 +104,7 @@ class CandyListActivity : AppCompatActivity() {
     /**
      * Get a list of candies from database
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun getCandies() {

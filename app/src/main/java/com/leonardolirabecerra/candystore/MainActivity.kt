@@ -78,6 +78,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Check if there's an admin user logged
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun checkIfUserIsAdmin(): Boolean {
@@ -100,6 +101,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Function to open login view
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 19/11/2018
      */
     private fun openLoginActivity() {
@@ -127,6 +129,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Get a list of candies from database
      * @author Leonardo Lira Becerra
+     * @author Alyson Joselyn
      * @date 26/11/2018
      */
     private fun getCandies() {
